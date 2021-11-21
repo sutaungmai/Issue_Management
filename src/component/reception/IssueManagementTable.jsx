@@ -3,6 +3,7 @@ import {Table} from 'antd'
 import 'antd/dist/antd.css'
 
 
+
 function IssueManagementTable() {
     const columns = [
         {
@@ -99,13 +100,15 @@ function IssueManagementTable() {
         },
     ]
     return (
-        <div>
-            
+        <React.Fragment>
+                
+                
                 <Table
+                
                     columns={columns}
             />
             
-        </div>
+        </React.Fragment>
     )
 }
 

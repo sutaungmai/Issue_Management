@@ -4,6 +4,15 @@
   
 }
 
+.sidebar:hover {
+  background-color: #0e153a;
+  color: #fff !important;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+
+
 
 
 

@@ -1,13 +1,14 @@
 import React from 'react'
-// import {Table,columns} from 'antd'
-import IssueManagementTable from '../table/IssueManagementTable'
+import IssueForm from '../reception/IssueForm'
+import IssueManagementTable from '../reception/IssueManagementTable'
 // import 'antd/dist/antd.css'
 
 function Content() {
     return (
-        <div>
+        <React.Fragment>
+                <IssueForm className="NewForm"></IssueForm>
                 <IssueManagementTable></IssueManagementTable>           
-        </div>
+        </React.Fragment>
     )
 }
 
