@@ -6,7 +6,7 @@ import IssueManagementTable from '../reception/IssueManagementTable'
 function Content() {
     return (
         <React.Fragment>
-                <IssueForm className="NewForm"></IssueForm>
+                
                 <IssueManagementTable></IssueManagementTable>           
         </React.Fragment>
     )

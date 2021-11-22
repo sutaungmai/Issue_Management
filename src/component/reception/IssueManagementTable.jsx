@@ -1,6 +1,8 @@
 import React from 'react'
-import {Table} from 'antd'
+import {Table,Row, Col} from 'antd'
+import IssueForm from './IssueForm'
 import 'antd/dist/antd.css'
+
 
 
 
@@ -101,12 +103,21 @@ function IssueManagementTable() {
     ]
     return (
         <React.Fragment>
+                <Col>
+                    <Row span={1} style={{padding: "10px"}}>
+                        <IssueForm />
+                    </Row>
+
+                    <Row span={24}>
+                        <Table
+                
+                            columns={columns}
+
+                        />
+                    </Row>
+                </Col>
                 
                 
-                <Table
-                
-                    columns={columns}
-            />
             
         </React.Fragment>
     )
