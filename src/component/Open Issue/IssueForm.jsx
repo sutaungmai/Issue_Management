@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {Form,Button,Modal,Input,DatePicker, Divider} from 'antd'
+import {Form,Button,Space,Modal,Input,DatePicker, Divider} from 'antd'
 
 function IssueForm() {
     const [isModalVisible, SetIsModalVisible] = useState(false);
@@ -18,9 +18,19 @@ function IssueForm() {
 
     return (
         <React.Fragment>
-            <Button type="primary" onClick={showModal}>
-                New
-            </Button>
+            <Space>
+                <Button className="btn" onClick={showModal}>
+                    New
+                </Button>
+
+                <Button className="btn">
+                    Edit
+                </Button>
+
+                <Button danger>
+                    Delete
+                </Button>
+            </Space>
 
              <Modal title="Issue" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
              

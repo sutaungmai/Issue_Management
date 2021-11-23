@@ -108,7 +108,7 @@ function IssueManagementTable() {
                         <IssueForm />
                     </Row>
 
-                    <Row span={24}>
+                    <Row span={24} style={{padding: "10px"}}>
                         <Table
                 
                             columns={columns}
