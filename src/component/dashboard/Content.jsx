@@ -1,6 +1,5 @@
 import React from 'react'
-import IssueForm from '../reception/IssueForm'
-import IssueManagementTable from '../reception/IssueManagementTable'
+import IssueManagementTable from '../Open Issue/IssueManagementTable'
 // import 'antd/dist/antd.css'
 
 function Content() {

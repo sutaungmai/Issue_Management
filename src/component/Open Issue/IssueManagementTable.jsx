@@ -9,9 +9,9 @@ import 'antd/dist/antd.css'
 function IssueManagementTable() {
     const columns = [
         {
-            key: 'issue_id',
+            key: 'id',
             title: 'Issue Id',
-            dataIndex: 'issue_id',
+            dataIndex: 'id',
             
         },
         {
@@ -49,6 +49,11 @@ function IssueManagementTable() {
             dataIndex: 'issue_types',
         },
         {
+            key: 'requirements',
+            title: 'Requirements',
+            dataIndex: 'requirements',
+        },
+        {
             key: 'short_term_solution',
             title: 'Short Term Solution',
             dataIndex: 'short_term_solution',
@@ -74,6 +79,11 @@ function IssueManagementTable() {
             key: 'no_of_days',
             title: 'No. of Days',
             dataIndex: 'no_of_days',
+        },
+        {
+            key: 'aging',
+            title: 'Aging',
+            dataIndex: 'aging'
         },
         {
             key: 'deadline',
@@ -112,6 +122,7 @@ function IssueManagementTable() {
                         <Table
                 
                             columns={columns}
+                            
 
                         />
                     </Row>
