@@ -5,8 +5,9 @@ import IssueManagementTable from '../Open Issue/IssueManagementTable'
 function Content() {
     return (
         <React.Fragment>
-                
-                <IssueManagementTable></IssueManagementTable>           
+               
+                <IssueManagementTable /> 
+            
         </React.Fragment>
     )
 }

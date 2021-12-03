@@ -1,234 +1,92 @@
 import React,{useState} from 'react'
-import {Form,Button,Space,Drawer,Input,DatePicker, Row, Col, Divider} from 'antd'
+import {Space,Drawer,Form,Divider,Row,Col,Input,DatePicker,Button} from 'antd'
+import { useDetailItem, useGetItem, useMutateItem } from '../../hooks/useitem';
+import ItemsForm from '../../Drawer-btn/ItemsForm';
+
 
 function IssueForm() {
-    const [visible, setVisible] = useState(false);
-    const showDrawer = () => {
-        setVisible(true);
-        };
+
+    const [newForm, showNewForm ] = useState(false)
+    const [editform, showEditForm ] =useState(false)
+    const [detailform, showDetailForm ] = useState(false)
+    const [visible, setVisible ] = useState(false)
+
+    //hooks
+    const [items, {loading, load} ] = useGetItem()
+    const [item, {loading: detailLoading, getItem}] = useDetailItem()
+    const [,{loading: mutateLoading,success: mutateSuccess, createItem,editItem, deleteItem}] = useMutateItem()
+
+    // useEffect(() => {
+    //     if(!mutateLoading&&mutateSuccess) {
+
+    //     }
+    // })
+
+    //function
+  
+
+    const onDetail = data => {
+        showDetailForm(true)
+        getItem(data.id)
+    }
+
+    const handleCreate = data => {
+        createItem(data)
+    }
+
+    const onshowEdit = data => {
+        showEditForm(true)
+        getItem(data.id)
+    }
+
+    const handleEdit = data => {
+        editItem(item.id,data)
+    }
+
+    const handleDelete = data => {
+        deleteItem(data.id)
+    }
+
+    //for newForm
+    const ShowNewForm =() => {
+            setVisible(true)
+        }
+
     const onClose = () => {
-    setVisible(false);
-    };
-    
+        setVisible(false)
+    }
+
+
+
+
+
 
     return (
         <React.Fragment>
             <Space>
-                <Button type="primary" onClick={showDrawer}>
-                    New
+
+                <Button type="primary" onClick={ShowNewForm}>
+                    Open
                 </Button>
 
-                <Button className="btn">
+                <Button  onClick={onshowEdit}>
                     Edit
                 </Button>
 
-                <Button danger>
+                <Button type="danger" onClick={handleDelete}>
                     Delete
                 </Button>
+
             </Space>
-                <Drawer width={800} title="Issue Form" placement="right" onClose={onClose} visible={visible}>
-                    <Form
-                        name="basic"
-                        layout="vertical"
-                    >
 
-                        <Divider orientation='left'>Issue Form </Divider>
-                         <Row justify="space-between">  
-                             <Col span={11}>     
-                                <Form.Item
-                                    label="Issue ID"
-                                    name="issue_id"
-                                    
-                                >
-                                    <Input />
-                                </Form.Item>
-                             </Col>
+            <Drawer width={700} placement="right" onClose={onClose} visible={visible}>
+                <ItemsForm onSumit={handleCreate}></ItemsForm>
+            </Drawer>
 
-                             <Col span={11}>
-                                <Form.Item
-                                    label="Issues"
-                                    name="issues"
-                                    rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input your Issues!',
-                                    },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row justify="space-between">
-                            <Col span={11}>
-                                <Form.Item
-                                label="Source"
-                                name="source"
-                                rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input your Source!',
-                                },
-                                ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                            </Col>
+            <Drawer width={700} placement="right" onClose={onClose} visible={visible}>
+                <ItemsForm onSumit={handleEdit}></ItemsForm>
+            </Drawer>
 
-                            <Col span={11}>
-                                <Form.Item
-                                    label="Department"
-                                    name="department"
-                                    rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input your Department!',
-                                    },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-
-                        <Row justify="space-between">
-                            <Col span={11}>
-                                <Form.Item
-                                    label="Dependencies"
-                                    name="dependencies"
-                                    rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input your Dependencies!',
-                                    },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-
-                        
-                            </Col>
-                            <Col span={11}>
-                                <Form.Item
-                                    label="Root Cause"
-                                    name="root_cause"
-                                    rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input your Root Cause!',
-                                    },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-
-                        <Row justify="space-between">
-                            <Col span={11}>
-                                <Form.Item
-                                        label="Issue Types"
-                                        name="issue_types"
-                                        rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please input your Issue Types!',
-                                        },
-                                        ]}
-                                    >
-                                    <Input />
-                                </Form.Item>
-
-                            </Col>
-
-                            <Col span={11}>
-                                <Form.Item label="Requirements">
-                                    <Input />
-                                </Form.Item>
-                            </Col>
-                        </Row>    
-
-                        <Row justify="space-between">
-                            <Col span={11}>
-                                <Form.Item
-                                    label="Short Term Solution"
-                                    name="short_term_solution"
-                                >
-                                    <Input />
-                                </Form.Item>
-                            </Col>
-                        
-                            <Col span={11}>
-                                <Form.Item
-                                    label="Long Term Solution"
-                                    name="long_term_solution"
-                                    
-                                >
-                                    <Input />
-                                </Form.Item>
-                            </Col>   
-                        </Row>
-                        <Row justify="space-around">
-                            <Col span={11}>
-                                <Form.Item name="start_date" label="Start Date" >
-
-                                    <DatePicker style={{width:"100%"}} />
-
-                                </Form.Item>
-
-                            </Col>
-                            <Col span={11}>
-                                <Form.Item
-                                    label="Close Date"
-                                    name="close_date"
-
-                                    >
-                                    <DatePicker style={{width:"100%"}} />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-
-                        <Row justify="space-between">
-                            <Col span={11}>
-                                <Form.Item
-                                    label="No. of Days"
-                                    name="no._of_days"
-                                    >
-                                    <Input />
-
-                                </Form.Item>
-
-                            </Col>
-                            <Col span={11}> 
-                                <Form.Item 
-                                    label="Aging"
-                                    name="aging">
-                                        <Input />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-
-                        <Row justify="space-between">
-                            <Col span={11}>
-                                <Form.Item
-                                    label="Priority"
-                                    name="priority"
-                                    
-                                >
-                                    <Input />
-                                </Form.Item>
-                            </Col>
-                            <Col span={11}>
-                                <Form.Item
-                                    label="Status"
-                                    name="status"
-                                >
-                                    <Input />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        </Form>
-                </Drawer>
              
         </React.Fragment>
   );

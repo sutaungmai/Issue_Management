@@ -2,6 +2,7 @@ import React from 'react'
 import {Table,Row, Col} from 'antd'
 import IssueForm from './IssueForm'
 import 'antd/dist/antd.css'
+import {useGetItem } from '../../hooks/useitem'
 
 
 
@@ -21,9 +22,9 @@ function IssueManagementTable() {
             
         },
         {
-            key: 'source',
-            title: 'Source',
-            dataIndex: 'source',
+            key: 'sources',
+            title: 'Sources',
+            dataIndex: 'sources',
             
         },
         {
@@ -111,6 +112,9 @@ function IssueManagementTable() {
             dataIndex: 'status',
         },
     ]
+
+    const [data] = useGetItem()
+    console.log(data)
     return (
         <React.Fragment>
                 <Col>
@@ -122,7 +126,7 @@ function IssueManagementTable() {
                         <Table
                 
                             columns={columns}
-                            
+                            dataSource={data}
 
                         />
                     </Row>
